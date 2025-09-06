@@ -1,86 +1,111 @@
 <!doctype html>
-if(list.length===0){ gallery.innerHTML = '<p style="grid-column:1/-1;color:var(--muted)">No se encontraron obras.</p>'; return }
-list.forEach(a=>{
-const card = document.createElement('article'); card.className='card';
-card.innerHTML = `
-<img class="thumb" src="${a.img}" alt="${a.title}" loading="lazy" data-id="${a.id}">
-<div class="meta">
-<h4 class="title">${a.title}</h4>
-<div class="muted">${a.artist} • ${a.year}</div>
-</div>
-`;
-gallery.appendChild(card);
-});
-// attach click handlers
-document.querySelectorAll('.thumb').forEach(img=>img.onclick = e => openLightbox(parseInt(e.currentTarget.dataset.id)));
-}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería de Arte</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+    header { background: #111; color: #fff; padding: 20px; text-align: center; }
+    h1 { margin: 0; font-size: 24px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: auto; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; }
+    .card img { width: 100%; height: 200px; object-fit: cover; cursor: pointer; }
+    .info { padding: 12px; }
+    .info h3 { margin: 0 0 8px; font-size: 18px; }
+    .info p { margin: 0; font-size: 14px; color: #555; }
+    .buy { margin-top: 10px; display: inline-block; background: #b08800; color: #fff; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 14px; }
+    .buy:hover { background: #d9a400; }
+    footer { text-align: center; padding: 20px; font-size: 14px; color: #666; }
+    /* Modal */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; }
+    .modal.open { display: flex; }
+    .modal-content { background: #fff; padding: 20px; border-radius: 8px; max-width: 800px; width: 90%; }
+    .modal-content img { width: 100%; height: auto; border-radius: 4px; }
+    .close { float: right; cursor: pointer; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galería de Arte</h1>
+    <p>Explora y adquiere obras destacadas</p>
+  </header>
 
+  <main>
+    <section class="gallery" id="gallery"></section>
+  </main>
 
-// filtros
-filters.addEventListener('click', e =>{
-const btn = e.target.closest('button'); if(!btn) return;
-[...filters.querySelectorAll('button')].forEach(b=>b.classList.remove('active'));
-btn.classList.add('active');
-applyFilters();
-});
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close" id="close">✕</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-artist"></p>
+      <img id="modal-img" src="" alt="">
+      <p id="modal-desc"></p>
+      <p id="modal-price" style="font-weight:bold"></p>
+      <a id="modal-buy" class="buy" target="_blank">Comprar</a>
+    </div>
+  </div>
 
+  <footer>
+    © 2025 Galería de Arte
+  </footer>
 
-search.addEventListener('input', ()=> applyFilters());
+  <script>
+    const artworks = [
+      {id:1,title:'Amanecer en la Colmena',artist:'María López',price:'$500',img:'https://picsum.photos/id/1015/600/400',desc:'Óleo sobre tela inspirado en la luz.'},
+      {id:2,title:'Hilos',artist:'Carlos Ruiz',price:'$350',img:'https://picsum.photos/id/1025/600/400',desc:'Fotografía en blanco y negro.'},
+      {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.'},
+      {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.'},
+    ];
 
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const closeBtn = document.getElementById('close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalArtist = document.getElementById('modal-artist');
+    const modalImg = document.getElementById('modal-img');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalPrice = document.getElementById('modal-price');
+    const modalBuy = document.getElementById('modal-buy');
 
-function applyFilters(){
-const active = filters.querySelector('button.active').dataset.filter;
-const q = search.value.trim().toLowerCase();
-let result = artworks.filter(a=> active==='all' || a.category===active);
-if(q) result = result.filter(a=> (a.title+a.artist+a.desc).toLowerCase().includes(q));
-render(result);
-}
+    function render(){
+      artworks.forEach(a=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${a.img}" alt="${a.title}" data-id="${a.id}">
+          <div class="info">
+            <h3>${a.title}</h3>
+            <p>${a.artist}</p>
+            <p><strong>${a.price}</strong></p>
+            <a href="https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
+          </div>
+        `;
+        gallery.appendChild(card);
+      });
+      document.querySelectorAll('.card img').forEach(img=>{
+        img.onclick = e => openModal(parseInt(e.target.dataset.id));
+      });
+    }
 
+    function openModal(id){
+      const a = artworks.find(x=>x.id===id);
+      if(!a) return;
+      modalTitle.textContent = a.title;
+      modalArtist.textContent = a.artist;
+      modalImg.src = a.img;
+      modalDesc.textContent = a.desc;
+      modalPrice.textContent = 'Precio: ' + a.price;
+      modalBuy.href = `https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+      modal.classList.add('open');
+    }
 
-// lightbox
-let currentIndex = 0;
-const lb = document.getElementById('lightbox');
-const lbImage = document.getElementById('lb-image');
-const lbTitle = document.getElementById('lb-title');
-const lbArtist = document.getElementById('lb-artist');
-const lbDesc = document.getElementById('lb-desc');
-const lbYear = document.getElementById('lb-year');
-const lbDim = document.getElementById('lb-dim');
+    closeBtn.onclick = () => modal.classList.remove('open');
+    window.onclick = e => { if(e.target===modal) modal.classList.remove('open'); };
 
-
-function openLightbox(id){
-currentIndex = artworks.findIndex(a=>a.id===id);
-if(currentIndex<0) return;
-updateLightbox();
-lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
-}
-function updateLightbox(){
-const a = artworks[currentIndex];
-lbImage.src = a.img;
-lbImage.alt = a.title;
-lbTitle.textContent = a.title;
-lbArtist.textContent = a.artist;
-lbDesc.textContent = a.desc;
-lbYear.textContent = 'Año: '+a.year;
-lbDim.textContent = 'Dimensiones: '+a.dim;
-}
-document.getElementById('close').onclick = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
-document.getElementById('next').onclick = ()=>{ currentIndex = (currentIndex+1)%artworks.length; updateLightbox(); }
-document.getElementById('prev').onclick = ()=>{ currentIndex = (currentIndex-1+artworks.length)%artworks.length; updateLightbox(); }
-
-
-// keyboard
-document.addEventListener('keydown', e=>{
-if(lb.classList.contains('open')){
-if(e.key==='Escape') document.getElementById('close').click();
-if(e.key==='ArrowRight') document.getElementById('next').click();
-if(e.key==='ArrowLeft') document.getElementById('prev').click();
-}
-});
-
-
-// inicializa
-render(artworks);
-</script>
+    render();
+  </script>
 </body>
 </html>
+
