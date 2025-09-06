@@ -44,6 +44,7 @@
       <p id="modal-desc"></p>
       <p id="modal-price" style="font-weight:bold"></p>
       <a id="modal-buy" class="buy" target="_blank">Comprar</a>
+      <a id="modal-google" class="buy" target="_blank" style="background:#555;margin-left:10px;">Ver todas las obras del artista</a>
     </div>
   </div>
 
@@ -53,10 +54,10 @@
 
   <script>
     const artworks = [
-      {id:1,title:'Amanecer en la Colmena',artist:'María López',price:'$500',img:'https://picsum.photos/id/1015/600/400',desc:'Óleo sobre tela inspirado en la luz.'},
-      {id:2,title:'Hilos',artist:'Carlos Ruiz',price:'$350',img:'https://picsum.photos/id/1025/600/400',desc:'Fotografía en blanco y negro.'},
-      {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.'},
-      {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.'},
+      {id:1,title:'Amanecer en la Colmena',artist:'Xeronimo',price:'$500',img:'https://picsum.photos/id/1015/600/400',desc:'Óleo sobre tela inspirado en la luz.'google:'https://photos.app.goo.gl/4uoG26cPboTY3Umw8'},
+      {id:2,title:'Hilos',artist:'Carlos Ruiz',price:'$350',img:'https://picsum.photos/id/1025/600/400',desc:'Fotografía en blanco y negro.',google:'https://photos.app.goo.gl/albumCarlosRuiz'},
+      {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.',google:'https://photos.app.goo.gl/albumAnaVera'},
+      {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.',google:'https://photos.app.goo.gl/albumLuisGomez'},
     ];
 
     const gallery = document.getElementById('gallery');
@@ -68,6 +69,7 @@
     const modalDesc = document.getElementById('modal-desc');
     const modalPrice = document.getElementById('modal-price');
     const modalBuy = document.getElementById('modal-buy');
+    const modalGoogle = document.getElementById('modal-google');
 
     function render(){
       artworks.forEach(a=>{
@@ -98,6 +100,7 @@
       modalDesc.textContent = a.desc;
       modalPrice.textContent = 'Precio: ' + a.price;
       modalBuy.href = `https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+      modalGoogle.href = a.google;
       modal.classList.add('open');
     }
 
@@ -108,4 +111,3 @@
   </script>
 </body>
 </html>
-
