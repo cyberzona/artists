@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Página principal -->
+  <url>
+    <loc>https://colmena8.org/</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  <!doctype html>
+<img class="thumb" src="${a.img}" alt="${a.title}" loading="lazy" data-id="${a.id}">
+<div class="meta">
+<h4 class="title">${a.title}</h4>
+<div class="muted">${a.artist} • ${a.year}</div>
+</div>
+`;
+gallery.appendChild(card);
+});
+// attach click handlers
+document.querySelectorAll('.thumb').forEach(img=>img.onclick = e => openLightbox(parseInt(e.currentTarget.dataset.id)));
+}
+
+
+// filtros
+filters.addEventListener('click', e =>{
+const btn = e.target.closest('button'); if(!btn) return;
+[...filters.querySelectorAll('button')].forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+applyFilters();
+});
+
+
+search.addEventListener('input', ()=> applyFilters());
+
+
+function applyFilters(){
+const active = filters.querySelector('button.active').dataset.filter;
+const q = search.value.trim().toLowerCase();
+let result = artworks.filter(a=> active==='all' || a.category===active);
+if(q) result = result.filter(a=> (a.title+a.artist+a.desc).toLowerCase().includes(q));
+render(result);
+}
+
+
+// lightbox
+let currentIndex = 0;
+const lb = document.getElementById('lightbox');
+const lbImage = document.getElementById('lb-image');
+const lbTitle = document.getElementById('lb-title');
+const lbArtist = document.getElementById('lb-artist');
+const lbDesc = document.getElementById('lb-desc');
+const lbYear = document.getElementById('lb-year');
+const lbDim = document.getElementById('lb-dim');
+
+
+function openLightbox(id){
+currentIndex = artworks.findIndex(a=>a.id===id);
+if(currentIndex<0) return;
+updateLightbox();
+lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+}
+function updateLightbox(){
+const a = artworks[currentIndex];
+lbImage.src = a.img;
+lbImage.alt = a.title;
+lbTitle.textContent = a.title;
+lbArtist.textContent = a.artist;
+lbDesc.textContent = a.desc;
+lbYear.textContent = 'Año: '+a.year;
+lbDim.textContent = 'Dimensiones: '+a.dim;
+}
+document.getElementById('close').onclick = ()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+document.getElementById('next').onclick = ()=>{ currentIndex = (currentIndex+1)%artworks.length; updateLightbox(); }
+document.getElementById('prev').onclick = ()=>{ currentIndex = (currentIndex-1+artworks.length)%artworks.length; updateLightbox(); }
+
+
+// keyboard
+document.addEventListener('keydown', e=>{
+if(lb.classList.contains('open')){
+if(e.key==='Escape') document.getElementById('close').click();
+if(e.key==='ArrowRight') document.getElementById('next').click();
+if(e.key==='ArrowLeft') document.getElementById('prev').click();
+}
+});
+
+
+// inicializa
+render(artworks);
+</script>
+</body>
+</html>
