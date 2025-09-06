@@ -1,18 +1,4 @@
-<html lang="es">
-{id:3,title:'Fragmentos',artist:'Ana Vera',category:'pintura',year:2024,dim:'100x70 cm',img:'https://picsum.photos/id/1003/800/600',desc:'Acrílico y collage.'},
-{id:4,title:'Estructura 7',artist:'Luis Gómez',category:'escultura',year:2020,dim:'60x40x30 cm',img:'https://picsum.photos/id/1031/800/600',desc:'Madera y metal.'},
-{id:5,title:'Mirada',artist:'Sofía R.',category:'fotografia',year:2019,dim:'30x45 cm',img:'https://picsum.photos/id/1042/800/600',desc:'Retrato contemporáneo.'},
-{id:6,title:'Sin Título',artist:'Colectivo Nido',category:'escultura',year:2022,dim:'variable',img:'https://picsum.photos/id/1062/800/600',desc:'Instalación modular.'}
-];
-
-
-const gallery = document.getElementById('gallery');
-const filters = document.getElementById('filters');
-const search = document.getElementById('search');
-
-
-function render(list){
-gallery.innerHTML = '';
+<!doctype html>
 if(list.length===0){ gallery.innerHTML = '<p style="grid-column:1/-1;color:var(--muted)">No se encontraron obras.</p>'; return }
 list.forEach(a=>{
 const card = document.createElement('article'); card.className='card';
