@@ -57,14 +57,9 @@
 
   <script>
     const artworks = [
-      {id:1,title:'Farolito',artist:'Xeronimo',price:'$150',img:'images/Lantern.png',desc:'Foto Artistica',photos:'https://photos.app.goo.gl/daQaqiXPteRHLU5JA'},
-      {id:2,title:'Vitral del corazón puro',artist:'Arturo Hernandez',price:'$200',img:'images/Vitral.png',desc:'Lápiz de color, con tinta china sobre papel de 160gr/cm³',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA2'},
-      {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA3'},
-      {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA4'},
-      {id:5,title:'Horizontes',artist:'Julia Ramírez',price:'$600',img:'https://picsum.photos/id/1035/600/400',desc:'Paisaje impresionista.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA5'},
-      {id:6,title:'Memoria',artist:'Sofía Méndez',price:'$400',img:'https://picsum.photos/id/1042/600/400',desc:'Dibujo a lápiz sobre papel.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA6'},
-      {id:7,title:'Raíces',artist:'Pedro Castillo',price:'$700',img:'https://picsum.photos/id/1050/600/400',desc:'Escultura en piedra.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA7'},
-      {id:8,title:'Caminos',artist:'Lucía Torres',price:'$550',img:'https://picsum.photos/id/1062/600/400',desc:'Acuarela con motivos urbanos.',photos:'https://photos.app.goo.gl/ENLACE_ARTISTA8'}     
+      {id:1,title:'Farolito',artist:'Xeronimo',price:'$150',img:'images/Lantern.png',desc:'Foto Artistica',photos:'https://photos.app.goo.gl/daQaqiXPteRHLU5JA',phone:'+1(801)301-9330'},
+      {id:2,title:'Vitral del corazón puro',artist:'Arturo Hernandez',price:'$200',img:'images/Vitral.png',desc:'Lápiz de color, con tinta china sobre papel de 160gr/cm³',photos:'https://photos.app.goo.gl/bUY3WFmSWyMWJpBq6',phone:'+1(346)649-1935'}
+        
     ];
 
     const gallery = document.getElementById('gallery');
@@ -88,7 +83,7 @@
             <h3>${a.title}</h3>
             <p>${a.artist}</p>
             <p><strong>${a.price}</strong></p>
-            <a href="https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
+            <a href="https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
             <br>
             <a href="${a.photos}" target="_blank" class="photos-link">Ver más obras en Google Fotos</a>
           </div>
