@@ -53,7 +53,7 @@
 
   <script>
     const artworks = [
-      {id:1,title:'Amanecer en la Colmena',artist:'María López',price:'$500',img:'https://picsum.photos/id/1015/600/400',desc:'Óleo sobre tela inspirado en la luz.'},
+      {id:1,title:'Amanecer en la Colmena',artist:'María López',price:'$500',img:'https://photos.app.goo.gl/daQaqiXPteRHLU5JA',desc:'Óleo sobre tela inspirado en la luz.'},
       {id:2,title:'Hilos',artist:'Carlos Ruiz',price:'$350',img:'https://picsum.photos/id/1025/600/400',desc:'Fotografía en blanco y negro.'},
       {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.'},
       {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.'},
@@ -79,10 +79,7 @@
             <h3>${a.title}</h3>
             <p>${a.artist}</p>
             <p><strong>${a.price}</strong></p>
-            <a href="https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
-            <a href="https://photos.app.goo.gl/daQaqiXPteRHLU5JA" target="_blank" class="text-blue-600 hover:underline">
-                Ver obras en Google Fotos
-            </a>
+            <a href="https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>           
           </div>
         `;
         gallery.appendChild(card);
