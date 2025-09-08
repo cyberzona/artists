@@ -85,7 +85,8 @@
             <p>${a.artist}</p>
             <p><strong>${a.price}</strong></p>
             <a href="https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
-            <br>            
+            <br>    
+              <a href="${a.photos}" target="_blank" class="photos-link">Ver más obras en Google Fotos</a>
           </div>
         `;
         gallery.appendChild(card);
