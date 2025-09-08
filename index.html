@@ -16,8 +16,6 @@
     .info p { margin: 0; font-size: 14px; color: #555; }
     .buy { margin-top: 10px; display: inline-block; background: #b08800; color: #fff; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 14px; }
     .buy:hover { background: #d9a400; }
-    .photos-link { margin-top: 8px; display: inline-block; font-size: 13px; color: #0066cc; text-decoration: none; }
-    .photos-link:hover { text-decoration: underline; }
     footer { text-align: center; padding: 20px; font-size: 14px; color: #666; }
     /* Modal */
     .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; }
@@ -46,8 +44,6 @@
       <p id="modal-desc"></p>
       <p id="modal-price" style="font-weight:bold"></p>
       <a id="modal-buy" class="buy" target="_blank">Comprar</a>
-      <br>    
-       <a id="modal-photos" class="photos-link" target="_blank">Ver más obras en Google Fotos</a>
     </div>
   </div>
 
@@ -57,10 +53,10 @@
 
   <script>
     const artworks = [
-      {id:1,title:'Farolito',artist:'Xeronimo',price:'$150',img:'images/A1-01.png',desc:'Foto Artistica',phone:'+18013019330'},
-      {id:2,title:'Vitral del corazón puro',artist:'Arturo Hernandez',price:'$200',img:'images/A2-01.png',desc:'Lápiz de color, con tinta china sobre papel de 160gr/cm³',phone:'+13466491935'},
-      {id:3,title:'María, esmalte de luz.',artist:'Arturo Hernandez',price:'$200',img:'images/A2-02.png',desc:'Lápiz de color con tinta china sobre cartulina blanca de 300 gr/cm³',phone:'+13466491935'}
-        
+      {id:1,title:'Amanecer en la Colmena',artist:'María López',price:'$500',img:'https://picsum.photos/id/1015/600/400',desc:'Óleo sobre tela inspirado en la luz.'},
+      {id:2,title:'Hilos',artist:'Carlos Ruiz',price:'$350',img:'https://picsum.photos/id/1025/600/400',desc:'Fotografía en blanco y negro.'},
+      {id:3,title:'Fragmentos',artist:'Ana Vera',price:'$800',img:'https://picsum.photos/id/1003/600/400',desc:'Acrílico y collage.'},
+      {id:4,title:'Estructura 7',artist:'Luis Gómez',price:'$950',img:'https://picsum.photos/id/1031/600/400',desc:'Escultura en madera y metal.'},
     ];
 
     const gallery = document.getElementById('gallery');
@@ -72,7 +68,6 @@
     const modalDesc = document.getElementById('modal-desc');
     const modalPrice = document.getElementById('modal-price');
     const modalBuy = document.getElementById('modal-buy');
-    const modalPhone = document.getElementById('modal-phone');
 
     function render(){
       artworks.forEach(a=>{
@@ -84,9 +79,7 @@
             <h3>${a.title}</h3>
             <p>${a.artist}</p>
             <p><strong>${a.price}</strong></p>
-            <a href="https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
-            <br>    
-              <a href="${a.photos}" target="_blank" class="photos-link">Ver más obras en Google Fotos</a>
+            <a href="https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
           </div>
         `;
         gallery.appendChild(card);
@@ -104,8 +97,7 @@
       modalImg.src = a.img;
       modalDesc.textContent = a.desc;
       modalPrice.textContent = 'Precio: ' + a.price;
-      modalBuy.href = `https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
-      modalPhone.href = a.phone;
+      modalBuy.href = `https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
       modal.classList.add('open');
     }
 
