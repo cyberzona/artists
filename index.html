@@ -57,8 +57,9 @@
 
   <script>
     const artworks = [
-      {id:1,title:'Farolito',artist:'Xeronimo',price:'$150',img:'images/Lantern.png',desc:'Foto Artistica',photos:'https://photos.app.goo.gl/daQaqiXPteRHLU5JA',phone:'+18013019330'},
-      {id:2,title:'Vitral del corazón puro',artist:'Arturo Hernandez',price:'$200',img:'images/Vitral.png',desc:'Lápiz de color, con tinta china sobre papel de 160gr/cm³',photos:'https://photos.app.goo.gl/bUY3WFmSWyMWJpBq6',phone:'+13466491935'}
+      {id:1,title:'Farolito',artist:'Xeronimo',price:'$150',img:'images/A1-01.png',desc:'Foto Artistica',phone:'+18013019330'},
+      {id:2,title:'Vitral del corazón puro',artist:'Arturo Hernandez',price:'$200',img:'images/A2-01.png',desc:'Lápiz de color, con tinta china sobre papel de 160gr/cm³',phone:'+13466491935'},
+      {id:3,title:'María, esmalte de luz.',artist:'Arturo Hernandez',price:'$200',img:'images/A2-02.png',desc:'Lápiz de color con tinta china sobre cartulina blanca de 300 gr/cm³',phone:'+13466491935'}
         
     ];
 
@@ -71,7 +72,7 @@
     const modalDesc = document.getElementById('modal-desc');
     const modalPrice = document.getElementById('modal-price');
     const modalBuy = document.getElementById('modal-buy');
-    const modalPhotos = document.getElementById('modal-photos');
+    const modalPhone = document.getElementById('modal-phone');
 
     function render(){
       artworks.forEach(a=>{
@@ -84,8 +85,7 @@
             <p>${a.artist}</p>
             <p><strong>${a.price}</strong></p>
             <a href="https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}" class="buy" target="_blank">Comprar</a>
-            <br>
-            <a href="${a.photos}" target="_blank" class="photos-link">Ver más obras en Google Fotos</a>
+            <br>            
           </div>
         `;
         gallery.appendChild(card);
@@ -104,7 +104,7 @@
       modalDesc.textContent = a.desc;
       modalPrice.textContent = 'Precio: ' + a.price;
       modalBuy.href = `https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
-      modalPhotos.href = a.photos;
+      modalPhone.href = a.phone;
       modal.classList.add('open');
     }
 
