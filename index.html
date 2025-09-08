@@ -103,7 +103,7 @@
       modalImg.src = a.img;
       modalDesc.textContent = a.desc;
       modalPrice.textContent = 'Precio: ' + a.price;
-      modalBuy.href = `https://wa.me/8013019330?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+      modalBuy.href = `https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
       modalPhotos.href = a.photos;
       modal.classList.add('open');
     }
