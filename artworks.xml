@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artworks>
+    <artwork>
+        <id>01</id>
+        <title>Farolito</title>
+        <artist>Xeronimo</artist>
+        <price>$25</price>
+        <img>images/A1-01.png</img>
+        <desc>Foto Artistica</desc>
+        <phone>+18013019330</phone>
+    </artwork>
+    <artwork>
+        <id>02</id>
+        <title>Elevación</title>
+        <artist>Arturo Hernandez</artist>
+        <price>$150</price>
+        <img>images/A2-01.png</img>
+        <desc>lápiz sobre cartulina blanca. 18x24 in</desc>
+        <phone>+13466491935</phone>
+    </artwork>
+    </artworks>
