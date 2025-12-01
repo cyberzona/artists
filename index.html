@@ -54,35 +54,7 @@
     © 2025 Galería de Arte
   </footer>
 
-  <script>
-    const artworks = [
-      {id:01,title:'Farolito',artist:'Xeronimo',price:'$25',img:'images/A1-01.png',desc:'Foto Artistica',phone:'+18013019330'},
-      {id:02,title:'Elevación',artist:'Arturo Hernandez',price:'$150',img:'images/A2-01.png',desc:'lápiz sobre cartulina blanca. 18x24 in',phone:'+13466491935'},
-      {id:03,title:'Vitral divino.',artist:'Arturo Hernandez',price:'$200',img:'images/A2-02.png',desc:'ápiz de color y tinta china sobre cartulina blanca. 18x24in',phone:'+13466491935'},
-      {id:04,title:'Búho arcoiris',artist:'Arturo Hernandez',price:'$80',img:'images/A2-03.png',desc:'lápiz y tinta china. 18x24in',phone:'+13466491935'},
-      {id:05,title:'Búho observando',artist:'Arturo Hernandez',price:'$80',img:'images/A2-04.png',desc:'lápiz y tinta china sobre cartulina negra. 18x24in ',phone:'+13466491935'},
-      {id:06,title:'Caballo vibrando',artist:'Arturo Hernandez',price:'$100',img:'images/A2-05.png',desc:'Tiza blanca y pinturas acrílica. 18x24in ',phone:'+13466491935'},
-      {id:07,title:'Lechuza Cazando',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-06.png',desc:'Cartulina Negra y pinturas acrílica. 18x24in ',phone:'+13466491935'},
-      {id:08,title:'Pasión de Cristo',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-07.png',desc:'Cartulina de Hilo y Tinta China. 18x24in ',phone:'+13466491935'},
-      {id:09,title:'Molinos Quijote',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-08.png',desc:'Cartulina de Hilo y Tinta China. 18x24in ',phone:'+13466491935'},
-      {id:10,title:'Aguila Abstacta',artist:'Arturo Hernandez',price:'$60 - Digital $10 - Copy $25',img:'images/A2-09.png',desc:'Cartulina y Tinta China-Creyon. 19x15in ',phone:'+13466491935'},
-      {id:11,title:'María, Sombra y Gracia',artist:'Arturo Hernandez',price:'$80 - Digital $10 - Copy $25',img:'images/A2-10.png',desc:'Cartulina y Tiza. 24x18in ',phone:'+13466491935'},
-      {id:12,title:'El Hombre de Galilea',artist:'Arturo Hernandez',price:'$150 - Digital $20 - Copy $30',img:'images/A2-11.png',desc:'Cartón y Tinta China-grafito. 14x16in ',phone:'+13466491935'},
-      {id:13,title:'Centinela de la Noche',artist:'Arturo Hernandez',price:'$100 - Digital $15 - Copy $30',img:'images/A2-12.png',desc:'Cartón y Tinta China. 14x16in ',phone:'+13466491935'},
-      {id:14,title:'Lara en Vaguada',artist:'Arturo Hernandez',price:'$60 - Digital $15 - Copy $30',img:'images/A2-13.png',desc:'Cartulina-Hilo y Tinta China. 25x30in ',phone:'+13466491935'},
-      {id:15,title:'Desfragmentado',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-14.png',desc:'Cartulina y Tinta China. 14x16in ',phone:'+13466491935'},
-      {id:16,title:'Templario en Cueva',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-15.png',desc:'Cartulina y Tinta China. 14x16in ',phone:'+13466491935'},
-      {id:17,title:'Unicornios',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-16.png',desc:'Cartulina y Crayola. 14x16in ',phone:'+13466491935'},
-      {id:18,title:'Meditando',artist:'Arturo Hernandez',price:'Sold',img:'images/A2-17.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:19,title:'Perfil Caballo',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-18.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:20,title:'Perfil Caballo',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-19.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:21,title:'Madre Tierra',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-20.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:22,title:'Aguila',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-21.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:23,title:'Quijote',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-22.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:24,title:'Rostro Mujer',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-23.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'},
-      {id:25,title:'Quijote',artist:'Arturo Hernandez',price:'$150 Digital $10 Copy $25',img:'images/A2-24.png',desc:'Cartulina y Acrilico. 14x16in ',phone:'+13466491935'}
-    ];
-
+  <script>    
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('modal');
     const closeBtn = document.getElementById('close');
@@ -93,7 +65,45 @@
     const modalPrice = document.getElementById('modal-price');
     const modalBuy = document.getElementById('modal-buy');
 
+    // Variable para almacenar las obras de arte cargadas
+    let artworks = [];
+
+    // Función para cargar los datos desde el archivo XML
+    async function loadArtworksFromXML(xmlFilePath = 'artworks.xml') {
+      try {
+        const response = await fetch(xmlFilePath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        const artworkNodes = xmlDoc.getElementsByTagName('artwork');
+        
+        // Convertir los nodos XML a un array de objetos JavaScript
+        artworks = Array.from(artworkNodes).map(node => ({
+            id: parseInt(node.getElementsByTagName('id')[0].textContent),
+            title: node.getElementsByTagName('title')[0].textContent,
+            artist: node.getElementsByTagName('artist')[0].textContent,
+            price: node.getElementsByTagName('price')[0].textContent,
+            img: node.getElementsByTagName('img')[0].textContent,
+            desc: node.getElementsByTagName('desc')[0].textContent,
+            phone: node.getElementsByTagName('phone')[0].textContent
+        }));
+        
+        render(); // Llama a render una vez que los datos están cargados
+      } catch (error) {
+        console.error("Error al cargar o parsear el XML:", error);
+        // Opcional: mostrar un mensaje de error en la galería
+        gallery.innerHTML = '<p style="text-align:center; color:red;">Error al cargar las obras de arte.</p>';
+      }
+    }
+
     function render(){
+      // Limpiar galería por si acaso
+      gallery.innerHTML = ''; 
+
       artworks.forEach(a=>{
         const card = document.createElement('div');
         card.className = 'card';
@@ -101,7 +111,6 @@
           <img src="${a.img}" alt="${a.title}" data-id="${a.id}">
           <div class="info">
             <h3>${a.title}</h3>       
-        
           </div>
         `;
         gallery.appendChild(card);
@@ -119,14 +128,17 @@
       modalImg.src = a.img;
       modalDesc.textContent = a.desc;
       modalPrice.textContent = 'Precio: ' + a.price;
-      modalBuy.href = `https://wa.me/${a.phone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+      // El 'phone' en el XML debe incluir el código de país (e.g., +1) para que WhatsApp funcione correctamente.
+      const cleanedPhone = a.phone.replace(/[^0-9+]/g, ''); 
+      modalBuy.href = `https://wa.me/${cleanedPhone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
       modal.classList.add('open');
     }
 
     closeBtn.onclick = () => modal.classList.remove('open');
     window.onclick = e => { if(e.target===modal) modal.classList.remove('open'); };
 
-    render();
+    // Iniciar la carga de las obras de arte
+    loadArtworksFromXML();
   </script>
 </body>
 </html>
