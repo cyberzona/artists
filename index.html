@@ -28,7 +28,8 @@
     .close { float: right; cursor: pointer; font-size: 18px; }
   </style>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/megajs/dist/mega.min.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/megajs/dist/mega.min.js"></script>
+<script src="script.js"></script>
 <body>
   <header>
     <h1>Galería de Arte</h1>
@@ -141,7 +142,7 @@
     window.onclick = e => { if(e.target===modal) modal.classList.remove('open'); };
 
     // Iniciar la carga de las obras de arte
-    loadArtworksFromXML(file);
+    loadArtworksFromXML("https://mega.nz/file/AFsBDQAA#S2SlMIOxq3DsoKx1AjtboOY6Cv720QNvYUuULVUC2ww");
   </script>
 </body>
 </html>
