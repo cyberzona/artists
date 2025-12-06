@@ -56,6 +56,7 @@
   </footer>
 
   <script>    
+    const file = mega.file("https://mega.nz/file/AFsBDQAA#S2SlMIOxq3DsoKx1AjtboOY6Cv720QNvYUuULVUC2ww");
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('modal');
     const closeBtn = document.getElementById('close');
@@ -140,7 +141,7 @@
     window.onclick = e => { if(e.target===modal) modal.classList.remove('open'); };
 
     // Iniciar la carga de las obras de arte
-    loadArtworksFromXML();
+    loadArtworksFromXML(file);
   </script>
 </body>
 </html>
