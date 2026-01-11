@@ -60,6 +60,17 @@ header{
 
 .image-wrapper{
   position:relative;
+  user-select:none; /* no permitir seleccionar */
+}
+
+/* Overlay invisible que bloquea clic derecho */
+.image-wrapper::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:auto; /* captura clics */
+  cursor:default;
 }
 
 .image-wrapper img{
@@ -67,7 +78,9 @@ header{
   height:200px;
   object-fit:cover;
   cursor:pointer;
-  user-select:none; /* evita selección */
+  user-select:none;
+  position:relative;
+  z-index:1; /* debajo del overlay */
 }
 
 .image-wrapper img.sold {
@@ -273,12 +286,16 @@ function openModal(id){
 document.getElementById('close').onclick = ()=>modal.classList.remove('open');
 modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('open'); };
 
-// ❌ Protección contra clic derecho
+// ❌ Protección avanzada contra clic derecho y arrastrar
 document.addEventListener('contextmenu', e => {
-  if(e.target.tagName === 'IMG'){
+  if(e.target.tagName === 'IMG' || e.target.closest('.image-wrapper')){
     e.preventDefault();
     alert('Descarga de imágenes deshabilitada.');
   }
+});
+
+document.addEventListener('dragstart', e=>{
+  if(e.target.tagName === 'IMG') e.preventDefault();
 });
 
 loadArtworksFromXML();
