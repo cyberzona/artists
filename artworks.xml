@@ -4,18 +4,18 @@
     <id>1</id>
     <title>Farolito</title>
     <artist>Xeronimo</artist>
-    <price>25</price>
+    <price>SOLD</price>
     <img>images/A1-01.png</img>
     <desc>Foto Artistica</desc>
     <phone>+18013019330</phone>
   </artwork>
   <artwork>
     <id>2</id>
-    <title>Elevación</title>
+    <title>Elevaci?n</title>
     <artist>Arturo Hernandez</artist>
     <price>150</price>
     <img>images/A2-01.png</img>
-    <desc>lápiz sobre cartulina blanca. 18x24 in</desc>
+    <desc>l?piz sobre cartulina blanca. 18x24 in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
@@ -24,25 +24,25 @@
     <artist>Arturo Hernandez</artist>
     <price>200</price>
     <img>images/A2-02.png</img>
-    <desc>Lápiz de color y tinta china sobre cartulina blanca. 18x24in</desc>
+    <desc>L?piz de color y tinta china sobre cartulina blanca. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
     <id>4</id>
-    <title>Búho arcoiris</title>
+    <title>B?ho arcoiris</title>
     <artist>Arturo Hernandez</artist>
     <price>80</price>
     <img>images/A2-03.png</img>
-    <desc>lápiz y tinta china. 18x24in</desc>
+    <desc>l?piz y tinta china. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
     <id>5</id>
-    <title>Búho observando</title>
+    <title>B?ho observando</title>
     <artist>Arturo Hernandez</artist>
     <price>80</price>
     <img>images/A2-04.png</img>
-    <desc>lápiz y tinta china sobre cartulina negra. 18x24in</desc>
+    <desc>l?piz y tinta china sobre cartulina negra. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
@@ -51,7 +51,7 @@
     <artist>Arturo Hernandez</artist>
     <price>100</price>
     <img>images/A2-05.png</img>
-    <desc>Tiza blanca y pinturas acrílica. 18x24in</desc>
+    <desc>Tiza blanca y pinturas acr?lica. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
@@ -60,12 +60,12 @@
     <artist>Arturo Hernandez</artist>
     <price>Sold</price>
     <img>images/A2-06.png</img>
-    <desc>Cartulina Negra y pinturas acrílica. 18x24in</desc>
+    <desc>Cartulina Negra y pinturas acr?lica. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
     <id>8</id>
-    <title>Pasión de Cristo</title>
+    <title>Pasi?n de Cristo</title>
     <artist>Arturo Hernandez</artist>
     <price>Sold</price>
     <img>images/A2-07.png</img>
@@ -92,7 +92,7 @@
   </artwork>
   <artwork>
     <id>11</id>
-    <title>María, Sombra y Gracia</title>
+    <title>Mar?a, Sombra y Gracia</title>
     <artist>Arturo Hernandez</artist>
     <price>$80 - Digital $10 - Copy $25</price>
     <img>images/A2-10.png</img>
@@ -105,7 +105,7 @@
     <artist>Arturo Hernandez</artist>
     <price>$150 - Digital $20 - Copy $30</price>
     <img>images/A2-11.png</img>
-    <desc>Cartón y Tinta China-grafito. 14x16in</desc>
+    <desc>Cart?n y Tinta China-grafito. 14x16in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
@@ -114,7 +114,7 @@
     <artist>Arturo Hernandez</artist>
     <price>$100 - Digital $15 - Copy $30</price>
     <img>images/A2-12.png</img>
-    <desc>Cartón y Tinta China. 14x16in</desc>
+    <desc>Cart?n y Tinta China. 14x16in</desc>
     <phone>+13466491935</phone>
   </artwork>
   <artwork>
