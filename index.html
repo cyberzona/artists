@@ -67,6 +67,7 @@ header{
   height:200px;
   object-fit:cover;
   cursor:pointer;
+  user-select:none; /* evita selección */
 }
 
 .image-wrapper img.sold {
@@ -126,6 +127,7 @@ footer{
   display:none;
   align-items:center;
   justify-content:center;
+  z-index:9999;
 }
 
 .modal.open{display:flex;}
@@ -141,6 +143,7 @@ footer{
 .modal-content img{
   width:100%;
   border-radius:6px;
+  user-select:none; /* no seleccionar */
 }
 
 .close{
@@ -225,7 +228,7 @@ function render(){
     gallery.insertAdjacentHTML('beforeend',`
       <div class="card">
         <div class="image-wrapper">
-          <img src="${a.img}" alt="${a.title}" data-id="${a.id}" class="${sold ? 'sold' : ''}">
+          <img src="${a.img}" alt="${a.title}" data-id="${a.id}" class="${sold ? 'sold' : ''}" draggable="false">
           ${sold ? '<div class="sold-badge">SOLD</div>' : ''}
         </div>
         <div class="info">
@@ -238,13 +241,8 @@ function render(){
 
 // Delegación de eventos: escucha todos los clicks en la galería
 gallery.addEventListener('click', e => {
-  // Solo interesa clics en imágenes
   if (e.target.tagName !== 'IMG') return;
-
-  // Si la imagen tiene clase 'sold', NO abrir modal
   if (e.target.classList.contains('sold')) return;
-
-  // Abrir modal solo si está disponible
   openModal(+e.target.dataset.id);
 });
 
@@ -255,12 +253,13 @@ function openModal(id){
   modalTitle.textContent = a.title;
   modalArtist.textContent = a.artist;
   modalImg.src = a.img;
+  modalImg.draggable = false;
   modalDesc.textContent = a.desc;
 
   if(isSold(a.price)){
     modalPrice.textContent = 'VENDIDO';
-    modalBuy.style.display = 'none';  // botón desaparece
-    modalImg.classList.add('sold');   // opcional: refuerza el estilo
+    modalBuy.style.display = 'none';
+    modalImg.classList.add('sold');
   } else {
     modalPrice.textContent = 'Precio: ' + a.price;
     modalBuy.style.display = 'inline-block';
@@ -271,9 +270,16 @@ function openModal(id){
   modal.classList.add('open');
 }
 
-
 document.getElementById('close').onclick = ()=>modal.classList.remove('open');
 modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('open'); };
+
+// ❌ Protección contra clic derecho
+document.addEventListener('contextmenu', e => {
+  if(e.target.tagName === 'IMG'){
+    e.preventDefault();
+    alert('Descarga de imágenes deshabilitada.');
+  }
+});
 
 loadArtworksFromXML();
 </script>
