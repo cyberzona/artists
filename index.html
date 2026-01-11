@@ -165,12 +165,19 @@
       modalArtist.textContent = a.artist;
       modalImg.src = a.img;
       modalDesc.textContent = a.desc;
-      modalPrice.textContent = 'Precio: ' + a.price;
-      // El 'phone' en el XML debe incluir el código de país (e.g., +1) para que WhatsApp funcione correctamente.
-      const cleanedPhone = a.phone.replace(/[^0-9+]/g, ''); 
-      modalBuy.href = `https://wa.me/${cleanedPhone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+
+      if (a.price.toLowerCase() === 'sold') {
+        modalPrice.textContent = 'VENDIDO';
+        modalBuy.style.display = 'none';
+      } else {
+        modalPrice.textContent = 'Precio: ' + a.price;
+        modalBuy.style.display = 'inline-block';
+        const cleanedPhone = a.phone.replace(/[^0-9+]/g, '');
+        modalBuy.href = `https://wa.me/${cleanedPhone}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+      }
+
       modal.classList.add('open');
-    }
+    }  
 
     closeBtn.onclick = () => modal.classList.remove('open');
     window.onclick = e => { if(e.target===modal) modal.classList.remove('open'); };
