@@ -90,22 +90,23 @@ header{
 }
 
 /* Nuevo estilo para SOLD como marca de agua */
-.sold-badge{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%) rotate(-45deg); /* diagonal */
-  background:rgba(0,0,0,0.3); /* fondo semi-transparente */
-  color:white;
-  font-size:50px;
-  font-weight:bold;
-  padding:10px 40px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  pointer-events:none; /* no bloquear clics */
-  z-index:3;
-  mix-blend-mode:overlay; /* efecto más integrado sobre la imagen */
+.sold-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  color: rgba(255, 255, 255, 0.5); /* blanco semi-transparente */
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 3;
+  white-space: nowrap;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* resalta sobre la imagen */
+  background: none; /* sin fondo sólido */
 }
+
 
 
 .info{
