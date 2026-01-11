@@ -71,7 +71,8 @@ header{
 
 .image-wrapper img.sold {
   filter: brightness(0.5) grayscale(0.5);
-  cursor: not-allowed; /* Indica visualmente que no se puede clicar */
+  cursor: not-allowed;
+  pointer-events: none; /* esto también evita clicks, pero solo visualmente */
 }
 
 .sold-badge{
