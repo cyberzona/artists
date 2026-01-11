@@ -69,6 +69,12 @@ header{
   cursor:pointer;
 }
 
+.image-wrapper img.sold {
+  filter: brightness(0.5) grayscale(0.5);
+  cursor: not-allowed;
+}
+
+
 .sold-badge{
   position:absolute;
   inset:0;
@@ -215,11 +221,12 @@ async function loadArtworksFromXML(path='artworks.xml'){
 function render(){
   gallery.innerHTML = '';
   artworks.forEach(a=>{
+    const sold = isSold(a.price);
     gallery.insertAdjacentHTML('beforeend',`
       <div class="card">
         <div class="image-wrapper">
-          <img src="${a.img}" alt="${a.title}" data-id="${a.id}">
-          ${isSold(a.price) ? '<div class="sold-badge">SOLD</div>' : ''}
+          <img src="${a.img}" alt="${a.title}" data-id="${a.id}" class="${sold ? 'sold' : ''}">
+          ${sold ? '<div class="sold-badge">SOLD</div>' : ''}
         </div>
         <div class="info">
           <h3>${a.title}</h3>
@@ -228,6 +235,7 @@ function render(){
     `);
   });
 }
+
 
 gallery.addEventListener('click', e=>{
   if(e.target.tagName !== 'IMG') return;
@@ -245,15 +253,18 @@ function openModal(id){
 
   if(isSold(a.price)){
     modalPrice.textContent = 'VENDIDO';
-    modalBuy.style.display = 'none';
-  }else{
+    modalBuy.style.display = 'none';  // botón desaparece
+    modalImg.classList.add('sold');   // opcional: refuerza el estilo
+  } else {
     modalPrice.textContent = 'Precio: ' + a.price;
     modalBuy.style.display = 'inline-block';
-    modalBuy.href = `https://wa.me/${a.phone.replace(/\\D/g,'')}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
+    modalImg.classList.remove('sold');
+    modalBuy.href = `https://wa.me/${a.phone.replace(/\D/g,'')}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
   }
 
   modal.classList.add('open');
 }
+
 
 document.getElementById('close').onclick = ()=>modal.classList.remove('open');
 modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('open'); };
