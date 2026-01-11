@@ -40,20 +40,23 @@
     .modal-content { background: #fff; padding: 20px; border-radius: 8px; max-width: 800px; width: 90%; }
     .modal-content img { width: 100%; height: auto; border-radius: 4px; }
     .close { float: right; cursor: pointer; font-size: 18px; }
+    .image-wrapper { position: relative; }
+    .image-wrapper img { display: block; }
     .sold-badge {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.65);
-      color: #fff;
-      font-size: 28px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        z-index: 5;
+        pointer-events: none;
+      }
   </style>
 </head>
 
@@ -133,29 +136,26 @@
       }
     }
 
-    function render(){
-      gallery.innerHTML = ''; 
-
-      artworks.forEach(a=>{
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const isSold = a.price.toLowerCase() === 'sold';
-
-        card.innerHTML = `
-          <img src="${a.img}" alt="${a.title}" data-id="${a.id}">
-          ${isSold ? '<div class="sold-badge">SOLD</div>' : ''}
+     function render(){
+        gallery.innerHTML = '';
+        artworks.forEach(a=>{
+          const card = document.createElement('div');
+          card.className = 'card';
+          const isSold = a.price.trim().toLowerCase() === 'sold';
+          card.innerHTML = `
+          <div class="image-wrapper">
+            <img src="${a.img}" alt="${a.title}" data-id="${a.id}">
+            ${isSold ? '<div class="sold-badge">SOLD</div>' : ''}
+          </div>
           <div class="info">
-            <h3>${a.title}</h3>       
-          </div>`;
-
-        gallery.appendChild(card);
+            <h3>${a.title}</h3>
+          </div> `;
+          gallery.appendChild(card);
       });
+      document.querySelectorAll('.card img').forEach(img=>{
+      img.onclick = e => openModal(parseInt(e.target.dataset.id));  });
+    }
 
-  document.querySelectorAll('.card img').forEach(img=>{
-    img.onclick = e => openModal(parseInt(e.target.dataset.id));
-  });
-}
 
 
     function openModal(id){
