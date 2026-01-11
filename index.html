@@ -71,9 +71,8 @@ header{
 
 .image-wrapper img.sold {
   filter: brightness(0.5) grayscale(0.5);
-  cursor: not-allowed;
+  cursor: not-allowed; /* Indica visualmente que no se puede clicar */
 }
-
 
 .sold-badge{
   position:absolute;
@@ -236,11 +235,17 @@ function render(){
   });
 }
 
+gallery.addEventListener('click', e => {
+  // Solo interesa hacer clic en la imagen
+  if (e.target.tagName !== 'IMG') return;
 
-gallery.addEventListener('click', e=>{
-  if(e.target.tagName !== 'IMG') return;
+  // Si la imagen tiene clase 'sold', NO abrir modal
+  if (e.target.classList.contains('sold')) return;
+
+  // Abrir modal solo si está disponible
   openModal(+e.target.dataset.id);
 });
+
 
 function openModal(id){
   const a = artworks.find(x=>x.id===id);
