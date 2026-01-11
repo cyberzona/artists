@@ -235,8 +235,9 @@ function render(){
   });
 }
 
+// Delegación de eventos: escucha todos los clicks en la galería
 gallery.addEventListener('click', e => {
-  // Solo interesa hacer clic en la imagen
+  // Solo interesa clics en imágenes
   if (e.target.tagName !== 'IMG') return;
 
   // Si la imagen tiene clase 'sold', NO abrir modal
@@ -245,7 +246,6 @@ gallery.addEventListener('click', e => {
   // Abrir modal solo si está disponible
   openModal(+e.target.dataset.id);
 });
-
 
 function openModal(id){
   const a = artworks.find(x=>x.id===id);
