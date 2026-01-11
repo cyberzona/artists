@@ -60,17 +60,7 @@ header{
 
 .image-wrapper{
   position:relative;
-  user-select:none; /* no permitir seleccionar */
-}
-
-/* Overlay invisible que bloquea clic derecho */
-.image-wrapper::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:auto; /* captura clics */
-  cursor:default;
+  user-select:none;
 }
 
 .image-wrapper img{
@@ -80,36 +70,27 @@ header{
   cursor:pointer;
   user-select:none;
   position:relative;
-  z-index:1; /* debajo del overlay */
+  z-index:1;
+  draggable: false;
 }
 
-.image-wrapper img.sold {
-  filter: brightness(0.99) grayscale(0.1);
-  opacity: 0.99;
-  cursor: not-allowed;
-}
-
-/* Nuevo estilo para SOLD como marca de agua */
-/* SOLD como marca de agua diagonal sin bloquear clics */
+/* Marca de agua diagonal para imágenes vendidas */
 .image-wrapper.sold::after {
   content: "SOLD";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  color: rgba(255, 255, 255, 0.5); /* semi-transparente */
+  color: rgba(255, 255, 255, 0.5);
   font-size: 50px;
   font-weight: bold;
   letter-spacing: 5px;
   text-transform: uppercase;
-  pointer-events: none; /* ¡no bloquea clics! */
+  pointer-events: none; /* no bloquea clics */
   white-space: nowrap;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
   z-index: 2;
 }
-
-
-
 
 .info{
   padding:12px;
@@ -163,7 +144,7 @@ footer{
 .modal-content img{
   width:100%;
   border-radius:6px;
-  user-select:none; /* no seleccionar */
+  user-select:none;
 }
 
 .close{
@@ -245,24 +226,25 @@ function render(){
   gallery.innerHTML = '';
   artworks.forEach(a=>{
     const sold = isSold(a.price);
-    gallery.insertAdjacentHTML('beforeend',`
-      <div class="card">
-        <div class="image-wrapper">
-          <img src="${a.img}" alt="${a.title}" data-id="${a.id}" class="${sold ? 'sold' : ''}" draggable="false">
-          ${sold ? '<div class="sold-badge">SOLD</div>' : ''}
-        </div>
-        <div class="info">
-          <h3>${a.title}</h3>
-        </div>
+    const cardHTML = document.createElement('div');
+    cardHTML.className = 'card';
+    cardHTML.innerHTML = `
+      <div class="image-wrapper ${sold ? 'sold' : ''}">
+        <img src="${a.img}" alt="${a.title}" data-id="${a.id}" draggable="false">
       </div>
-    `);
+      <div class="info">
+        <h3>${a.title}</h3>
+      </div>
+    `;
+    gallery.appendChild(cardHTML);
   });
 }
 
 // Delegación de eventos: escucha todos los clicks en la galería
 gallery.addEventListener('click', e => {
   if (e.target.tagName !== 'IMG') return;
-  if (e.target.classList.contains('sold')) return;
+  const wrapper = e.target.closest('.image-wrapper');
+  if (wrapper.classList.contains('sold')) return; // no abrir modal si está vendida
   openModal(+e.target.dataset.id);
 });
 
@@ -279,11 +261,9 @@ function openModal(id){
   if(isSold(a.price)){
     modalPrice.textContent = 'VENDIDO';
     modalBuy.style.display = 'none';
-    modalImg.classList.add('sold');
   } else {
     modalPrice.textContent = 'Precio: ' + a.price;
     modalBuy.style.display = 'inline-block';
-    modalImg.classList.remove('sold');
     modalBuy.href = `https://wa.me/${a.phone.replace(/\D/g,'')}?text=Quiero%20comprar%20${encodeURIComponent(a.title)}`;
   }
 
@@ -293,7 +273,7 @@ function openModal(id){
 document.getElementById('close').onclick = ()=>modal.classList.remove('open');
 modal.onclick = e=>{ if(e.target===modal) modal.classList.remove('open'); };
 
-// ❌ Protección avanzada contra clic derecho y arrastrar
+// ❌ Protección básica contra clic derecho y arrastrar
 document.addEventListener('contextmenu', e => {
   if(e.target.tagName === 'IMG' || e.target.closest('.image-wrapper')){
     e.preventDefault();
