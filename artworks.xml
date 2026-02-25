@@ -166,7 +166,7 @@
     <id>19</id>
     <title>Perfil Caballo</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-18.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -175,7 +175,7 @@
     <id>20</id>
     <title>Perfil Caballo</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-19.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -184,7 +184,7 @@
     <id>21</id>
     <title>Madre Tierra</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-20.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -193,7 +193,7 @@
     <id>22</id>
     <title>Aguila</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-21.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -202,7 +202,7 @@
     <id>23</id>
     <title>Quijote</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-22.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -211,7 +211,7 @@
     <id>24</id>
     <title>Rostro de Mujer</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-23.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
     <phone>+13466491935</phone>
@@ -220,9 +220,27 @@
     <id>25</id>
     <title>Quijote</title>
     <artist>Arturo Hernandez</artist>
-    <price>$150 Digital $10 Copy $25</price>
+    <price>$150 Digital $15 Copy $35</price>
     <img>images/A2-24.png</img>
     <desc>Cartulina y Acrilico. 14x16in</desc>
+    <phone>+13466491935</phone>
+  </artwork>
+  <artwork>
+    <id>26</id>
+    <title>Casa antigua bajo la luna llena </title>
+    <artist>Arturo Hernandez</artist>
+    <price>$150 Digital $15 Copy $35</price>
+    <img>images/A2-25.png</img>
+    <desc>Cart?n y Acr?lico. 15x20in</desc>
+    <phone>+13466491935</phone>
+  </artwork>
+  <artwork>
+    <id>27</id>
+    <title>Santa Cena</title>
+    <artist>Arturo Hernandez</artist>
+    <price>$200 Digital $15 Copy $45</price>
+    <img>images/A2-26.png</img>
+    <desc>Cartulina y Acrilico. 16x20in</desc>
     <phone>+13466491935</phone>
   </artwork>
 </gallery>
