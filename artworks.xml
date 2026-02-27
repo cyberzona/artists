@@ -11,7 +11,7 @@
   </artwork>
   <artwork>
     <id>2</id>
-    <title>Elevaci?n</title>
+    <title>Elevacion</title>
     <artist>Arturo Hernandez</artist>
     <price>150</price>
     <img>https://lh3.googleusercontent.com/u/0/d/1ELy-Ckm5iqRKIrVYv-TQxHTuyx7xC05a</img>
@@ -59,7 +59,7 @@
     <title>Lechuza Cazando</title>
     <artist>Arturo Hernandez</artist>
     <price>Sold</price>
-    <img>https://lh3.googleusercontent.com/u/0/d/1KDd7gyIIoxfR-E96QQ3LA7KICvauD9HN</img>
+    <img>https://lh3.googleusercontent.com/u/0/d/1KpCtOxCZDiqoL1TZBUtqBGDS8vikyl9d</img>
     <desc>Cartulina Negra y pinturas acr?lica. 18x24in</desc>
     <phone>+13466491935</phone>
   </artwork>
@@ -241,6 +241,33 @@
     <price>$200 Digital $15 Copy $45</price>
     <img>https://lh3.googleusercontent.com/u/0/d/16T12nwY37iNKBthTpVqnZ-mpExqGNOON</img>
     <desc>Cartulina y Acrilico. 16x20in</desc>
+    <phone>+13466491935</phone>
+  </artwork>
+  <artwork>
+    <id>28</id>
+    <title>Salvacion en brazos de Madre</title>
+    <artist>Arturo Hernandez</artist>
+    <price>Sold</price>
+    <img>https://lh3.googleusercontent.com/u/0/d/1Ld1eC5RrwDUo-dSAb8g3pPKXDH6slsLN</img>
+    <desc>Cartulina de hilo y Tinta China</desc>
+    <phone>+13466491935</phone>
+  </artwork>
+  <artwork>
+    <id>29</id>
+    <title>Papa Buho</title>
+    <artist>Arturo Hernandez</artist>
+    <price>Sold</price>
+    <img>https://lh3.googleusercontent.com/u/0/d/1KpCtOxCZDiqoL1TZBUtqBGDS8vikyl9d</img>
+    <desc>Cartulina de hilo y Tinta China</desc>
+    <phone>+13466491935</phone>
+  </artwork>
+  <artwork>
+    <id>30</id>
+    <title>Escaleras al Cielo</title>
+    <artist>Arturo Hernandez</artist>
+    <price>Sold</price>
+    <img>https://lh3.googleusercontent.com/u/0/d/1KpCtOxCZDiqoL1TZBUtqBGDS8vikyl9d</img>
+    <desc>Cartulina de hilo y Tinta China</desc>
     <phone>+13466491935</phone>
   </artwork>
 </gallery>
